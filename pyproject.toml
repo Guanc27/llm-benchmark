@@ -1,0 +1,34 @@
+[project]
+name = "llm-benchmark"
+version = "0.1.0"
+description = "LLM latency and cost benchmarking platform"
+requires-python = ">=3.11"
+dependencies = [
+    # Web framework
+    "fastapi>=0.109.0",
+    "uvicorn>=0.27.0",          # ASGI server (runs FastAPI)
+
+    # Database
+    "sqlalchemy>=2.0.0",        # ORM (Python objects <-> database rows)
+    "psycopg2-binary>=2.9.0",   # PostgreSQL driver (how Python talks to Postgres)
+    "alembic>=1.13.0",          # Database migrations (schema versioning)
+
+    # LLM clients
+    "anthropic>=0.40.0",        # Official Anthropic SDK (async streaming support)
+
+    # Utilities
+    "pydantic>=2.0.0",          # Data validation
+    "pydantic-settings>=2.0.0", # Load settings from .env files
+    "python-dotenv>=1.0.0",     # Read .env files
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0.0",
+    "pytest-asyncio>=0.23.0",
+    "httpx>=0.27.0",            # Test client for FastAPI
+]
+
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
