@@ -1,0 +1,19 @@
+version: "3.8"
+
+services:
+  # PostgreSQL database
+  db:
+    image: postgres:16-alpine    # Use official PostgreSQL image (alpine = small)
+    container_name: llm_benchmark_db
+    environment:
+      POSTGRES_USER: benchmark      # Username to connect with
+      POSTGRES_PASSWORD: benchmark  # Password (fine for local dev)
+      POSTGRES_DB: llm_benchmark    # Database name
+    ports:
+      - "5432:5432"                 # Expose on standard PostgreSQL port
+    volumes:
+      - postgres_data:/var/lib/postgresql/data  # Persist data between restarts
+
+# Named volume - data survives container restarts
+volumes:
+  postgres_data:
